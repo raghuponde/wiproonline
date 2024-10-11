@@ -676,7 +676,45 @@ export default class Counter extends React.Component
     }
 }
 
+Now i will add state property which is in built in that  i will put count variable and intilize it with zero 
 
+and same varibale in desing i will call it 
+
+import React from "react";
+
+export default class Counter extends React.Component
+{
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+            count: 0
+        }
+    }
+
+    handleAttack()
+    {
+        alert('attack clicked')
+    }
+    handleDefence()
+    {
+        alert('defence clicked')
+    }
+    render()
+    {
+        return (
+           
+            <div >
+       <h1>Counter:{this.state.count} </h1>
+       <button onClick={this.handleAttack} style={{ width: "200px" }}>+1</button>
+         <button onClick={this.handleDefence} style={{ width: "200px" }}>-1</button>
+          </div>
+
+
+       )
+
+    }
+}
 
 
 
