@@ -1,4 +1,583 @@
-heloo
-hekooooooslssss
+keep all headers into seperate file Header.jsx and export the main header which is holding other headers
 
-kdkdkdk
+Header.jsx
+-----------
+function MainHeader()
+{
+return (<div><h2 className='text-primary'> The React Course </h2>
+<h2 className='heading2'> The React Course2 </h2>
+</div>
+);
+}
+const subHeaderStyle = {
+color: "blueviolet",
+backgroundColor: "lightgray"
+}
+function SubHeader()
+{
+return (<p style={subHeaderStyle}> The course is very exciting </p>);
+}
+export function Header()
+{
+return(
+<div>
+<MainHeader></MainHeader>
+<SubHeader></SubHeader>
+</div>
+)
+}
+
+
+footer.jsx
+--------------
+function MainHeader()
+{
+return (<div><h2 className='text-primary'> The React Course </h2>
+<h2 className='heading2'> The React Course2 </h2>
+</div>
+);
+}
+const subHeaderStyle = {
+color: "blueviolet",
+backgroundColor: "lightgray"
+}
+function SubHeader()
+{
+return (<p style={subHeaderStyle}> The course is very exciting </p>);
+}
+export function Header()
+{
+return(
+<div>
+<MainHeader></MainHeader>
+<SubHeader></SubHeader>
+</div>
+)
+}
+
+
+now let us add one compoent for practise later 
+--------------------------------------------
+Practise.jsx
+-------------
+
+version 1 
+----------
+export   function App()
+{
+    var userName = "rajesh kumar";
+    var userAge = 34;
+    var userLocation = "chennai";
+    return (
+        <div>
+            <h1>{userName}</h1>
+            <p>Age :{userAge}</p>
+            <p> Location : { userLocation}</p>
+
+        </div>
+    )
+}
+
+import in index.js file 
+
+and add in root tag 
+
+version 2
+-----------
+export function App()
+{
+ 
+    var user = {
+        name: "rajesh kumar ",
+        age: 35,
+        location:"bangalore"
+    }
+
+    return (
+        <div>
+            <h1>{user.name}</h1>
+            <p>Age :{user.age}</p>
+            <p> Location : {user.location}</p>
+
+        </div>
+    )
+}
+
+
+version3 
+-------------
+export function App()
+{
+ 
+    var user = {
+        name: "rajesh kumar ",
+        age: 35,
+        location:'hyderbad'
+    }
+    function getlocation(location)
+    {
+        if (location)
+        {
+            return location;
+        }
+        else
+        {
+            return 'unknown';     
+        }
+    }
+
+    return (
+        <div>
+            <h1>{user.name}</h1>
+            <p>Age :{user.age}</p>
+            <p> Location : {getlocation(user.location)}</p>
+
+        </div>
+    )
+}
+
+
+version 4 
+----------
+export function App()
+{
+ 
+    const user = {
+        name: "Andrew",
+        cities: ['newyork', 'Dublin', 'Moscow'],
+        printplaceslived() {
+         
+            return this.cities.map((city) => this.name + ' has lived in  '+city);
+              
+        }
+
+  }
+
+    return (
+        <div>
+            <h3>{user.printplaceslived() }</h3>
+        </div>
+    )
+}
+
+version 5
+---------
+import { useState } from 'react';
+
+export function App() {
+  const [count, setCount] = useState(0);
+
+  const addOne = () => setCount(count + 1);
+  const minusOne = () => setCount(count - 1);
+  const reset = () => setCount(0);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>&nbsp;
+      <button onClick={minusOne}>-1</button>&nbsp;
+      <button onClick={reset}>reset</button><br />
+    </div>
+  );
+}
+
+
+Now create a student.jsx file 
+--------------------------------
+here u can use men or women and numner 0 to 99 
+export function Students()
+{
+    const fullname = "Kris Walley"
+    const ProgrammingExp = 2;
+    return (
+        <div className="container p-4">
+            <div className="row">
+                Students Enrolled<br/>
+            </div>
+
+            <div className="row border">
+                <div className="col-2">
+                    <img src="https://randomuser.me/api/portraits/women/10.jpg" className="w-50"></img>
+                </div>
+                <div className="col-10">
+                    {fullname} <br />
+                    Programming Experience {ProgrammingExp} years
+
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+
+in rhe index.js file 
+------------------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import "./CSS/style.css";
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { Students } from './Student';
+
+
+function MainBody()
+{
+return (
+<div>
+<p>In this course we learn react by building taskopedia </p>
+<ul>
+<li>Call Ben</li>
+<li>Go to walmart</li>
+</ul>
+</div>
+)
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<div>
+        <Header />
+        <MainBody />
+        <Students />
+        <Students />
+         <Students />
+<Footer />
+</div>
+);
+
+here for each student i want to give different image ,name and also expereince which i can do using props proeprty 
+
+
+index.js
+-----------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import "./CSS/style.css";
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { Students } from './Student';
+
+
+function MainBody()
+{
+return (
+<div>
+<p>In this course we learn react by building taskopedia </p>
+<ul>
+<li>Call Ben</li>
+<li>Go to walmart</li>
+</ul>
+</div>
+)
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<div>
+        <Header />
+        <MainBody />
+        <Students experince={4} name="John Doe" headshot="https://randomuser.me/api/portraits/men/40.jpg" />
+        <Students   experince={2} name="marry Johnson" headshot="https://randomuser.me/api/portraits/women/40.jpg" />
+         <Students  experince={10} name="Harris Hilton" headshot="https://randomuser.me/api/portraits/men/20.jpg" />
+<Footer />
+</div>
+);
+
+student.jsx
+------------
+export function Students(props)
+{
+    // const fullname = "Kris Walley"
+    // const ProgrammingExp = 2;
+    return (
+        <div className="container p-4">
+            <div className="row">
+                Students Enrolled<br/>
+            </div>
+
+            <div className="row border">
+                <div className="col-2">
+                    <img src={props.headshot} className="w-50"></img>
+                </div>
+                <div className="col-10">
+                    {props.name} <br />
+                    Programming Experience {props.experience} years
+
+                </div>
+            </div>
+        </div>
+    )
+}
+
+Now add folder imgages in src folder and shift logo images into that folder 
+and after that put this code header.jsx which i am gving it 
+
+import logo from './images/logo192.png'
+function MainHeader()
+{
+    return (
+<div className="pt-3 py-1 pl-2" style={{backgroundColor:"black"}}>
+<img src={logo} style={{height:"35px",vertiCalAlign:"top"}}></img>
+<span className="h2 pt-4 text-white-50">React Course TaskOPedia -</span>
+</div>
+);
+}
+const subHeaderStyle = {
+color: "blueviolet",
+backgroundColor: "lightgray"
+}
+function SubHeader()
+{
+return (<p style={subHeaderStyle}> The course is very exciting </p>);
+}
+export function Header()
+{
+return(
+<div>
+<MainHeader></MainHeader>
+<SubHeader></SubHeader>
+</div>
+)
+}
+
+
+Now add this url in index.html page 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrapicons@
+1.11.3/font/bootstrap-icons.min.css">
+
+addd new jsx file studentreviw.jsx and code below 
+--------------------------------------------
+
+export default function StudentReview()
+{
+    return (
+        
+        <div className="p-2">
+       <i class="bi bi-hand-thumbs-up-fill text-success"></i> &nsbp;
+        <i class="bi bi-hand-thumbs-down-fill text-danger"></i>
+       </div>
+    )
+}
+
+
+In index.js 
+----------------
+
+<!-- Add Bootstrap Icons CDN link -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+
+
+
+studnet 
+-------
+export function Students(props)
+{
+    // const fullname = "Kris Walley"
+    // const ProgrammingExp = 2;
+    return (
+        <div className="container p-4">
+            <div className="row">
+                Students Enrolled<br/>
+            </div>
+
+            <div className="row border">
+                <div className="col-2">
+                    <img src={props.headshot} className="w-50"></img>
+                </div>
+                <div className="col-10">
+                    {props.name} <br />
+                    Programming Experience {props.experience} years
+                    
+                </div>
+               
+            </div>
+            </div>
+    )
+}
+
+index.js 
+----------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import "./CSS/style.css";
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { Students } from './Student';
+import { StudentReviews } from './StudentReview';
+
+function MainBody()
+{
+return (
+<div>
+<p>In this course we learn react by building taskopedia </p>
+<ul>
+<li>Call Ben</li>
+<li>Go to walmart</li>
+</ul>
+</div>
+)
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<div>
+        <Header />
+        <MainBody />
+        <Students experince={4} name="John Doe" headshot="https://randomuser.me/api/portraits/men/40.jpg"/>
+         <StudentReviews />
+        <Students experince={2} name="marry Johnson" headshot="https://randomuser.me/api/portraits/women/40.jpg"/>
+          <StudentReviews />
+          
+         <Students  experince={10} name="Harris Hilton" headshot="https://randomuser.me/api/portraits/men/20.jpg" />
+<Footer />
+</div>
+);
+
+
+Now i have to convert all the funtions into arrow functions 
+
+export const  StudentReviews=()=>
+{
+    return (
+        
+        <div className="p-2">
+            <i class="bi bi-hand-thumbs-up-fill text-success"></i> &nsbp;
+            <i class="bi bi-hand-thumbs-down-fill text-danger"></i>
+        </div>
+    );
+}
+
+above syntax will work if using {   }  in imports 
+
+if u are directly putting 
+import  StudentReviews  from './StudentReview';
+
+then 
+
+const  StudentReviews=()=>
+{
+    return (
+        
+        <div className="p-2">
+            <i class="bi bi-hand-thumbs-up-fill text-success"></i> &nsbp;
+            <i class="bi bi-hand-thumbs-down-fill text-danger"></i>
+        </div>
+    );
+}
+
+export default StudentReviews;
+
+Now let us chnage remaining also
+
+export const  Students=(props)=>
+{
+    // const fullname = "Kris Walley"
+    // const ProgrammingExp = 2;
+    return (
+        <div className="container p-4">
+            <div className="row">
+                Students Enrolled<br/>
+            </div>
+
+            <div className="row border">
+                <div className="col-2">
+                    <img src={props.headshot} className="w-50"></img>
+                </div>
+                <div className="col-10">
+                    {props.name} <br />
+                    Programming Experience {props.experience} years
+                    
+                </div>
+               
+            </div>
+            </div>
+    )
+}
+
+export const  Header=()=>
+{
+return(
+<div>
+<MainHeader></MainHeader>
+<SubHeader></SubHeader>
+</div>
+)
+}
+
+export const  Footer=()=>
+{
+return (
+<p style={{ color:"gray",backgroundColor:"black" }}> This is footer </p>
+)
+}
+
+
+Now till now we used function based compoenents now i want to convert some of the arrow functions in clas based component how to do let us see 
+
+import React from "react";
+
+class StudentReviews extends React.Component 
+{
+    render() {
+        return (
+        
+            <div className="p-2">
+                <i class="bi bi-hand-thumbs-up-fill text-success"></i> &nsbp;
+                <i class="bi bi-hand-thumbs-down-fill text-danger"></i>
+            </div>
+        );
+    }
+}
+
+export default StudentReviews;
+
+ for student 
+ ------------
+import React from "react"
+
+
+ class Students extends React.Component
+{
+    render() {
+        return (
+            <div className="container p-4">
+                <div className="row">
+                    Students Enrolled<br />
+                </div>
+
+                <div className="row border">
+                    <div className="col-2">
+                        <img src={this.props.headshot} className="w-50"></img>
+                    </div>
+                    <div className="col-10">
+                        {this.props.name} <br />
+                        Programming Experience {this.props.experience} years
+                    
+                    </div>
+               
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Students
+
+this sytax for above type of export 
+
+import students from './student'
+   
+
+N
+
+
+
+
+
+
+
+
+
+
+
