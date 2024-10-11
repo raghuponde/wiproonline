@@ -716,6 +716,50 @@ export default class Counter extends React.Component
     }
 }
 
+see here state is immutable means i cannot modify the count value means directly i cannot modify eg try in comment code which is given down 
+so i can chnage the value of state using setState method but u have to bind that method in constructor 
+
+
+import React from "react";
+
+export default class Counter extends React.Component
+{
+    constructor(props)
+    {
+        super(props);
+        this.handleAttack = this.handleAttack.bind(this);
+        this.state = {
+            count: 0
+        }
+    }
+
+    handleAttack()
+    {
+        alert('attack clicked')
+        //  this.state.count = 1;
+        this.setState({count:2})
+    }
+    handleDefence()
+    {
+        alert('defence clicked')
+    }
+    render()
+    {
+        return (
+           
+            <div >
+       <h1>Counter:{this.state.count} </h1>
+       <button onClick={this.handleAttack} style={{ width: "200px" }}>+1</button>
+         <button onClick={this.handleDefence} style={{ width: "200px" }}>-1</button>
+          </div>
+
+
+       )
+
+    }
+}
+
+
 
 
 
