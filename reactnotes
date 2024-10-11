@@ -645,8 +645,36 @@ root.render(
 
 </html>
 
+updated counter frist add counter.jsx file 
+--------------------
+
+import React from "react";
+
+export default class Counter extends React.Component
+{
+    handleAttack()
+    {
+        alert('attack clicked')
+    }
+    handleDefence()
+    {
+        alert('defence clicked')
+    }
+    render()
+    {
+        return (
+           
+            <div >
+       <h1>Counter: </h1>
+       <button onClick={this.handleAttack} style={{ width: "200px" }}>+1</button>
+         <button onClick={this.handleDefence} style={{ width: "200px" }}>-1</button>
+          </div>
 
 
+       )
+
+    }
+}
 
 
 
