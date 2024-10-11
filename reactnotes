@@ -803,6 +803,22 @@ export default class Counter extends React.Component
 
     }
 }
+in the handle attack if i put like this 
+
+handleAttack()
+    {
+      // alert('attack clicked')
+        //  this.state.count = 1;
+        // this.setState({count:2})
+       
+        this.setState({ count: this.state.count + 100 })
+         this.setState({ count: this.state.count + 10 })
+    }
+
+i shoudl get 110 but i will just see that counter is increasing to 20 and then again if clikced 30 like that it is forgetting 100 
+
+if i reverse then it will first 100 and then 200 and will forget previous value of 10 
+
 
 
 
