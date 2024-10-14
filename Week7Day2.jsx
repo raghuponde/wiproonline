@@ -207,7 +207,86 @@ return (
 }
 export default ContactIndex;
     
+Now add contact code is like this 
 
+  AdddConatct.jsx
+    *************
+    const AddContact = () => {
+return (
+<div className="border row text-white p-2">
+
+<div className="col-12 text-white-50">Add a new Contact</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Name..."
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Email..."
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Phone..."
+></input>
+</div>
+<div className="col-12 col-md-6 offset-md-3 p-1">
+<button className="btn btn-primary btn-sm form-control">
+Create</button>
+</div>
+</div>
+);
+};
+export default AddContact;
+and place this compoennt in contact index 
+    -------------------------------------
+    
+    import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContacts from "./RemoveAllContacts";
+
+class ContactIndex extends React.Component {
+render() {
+return (
+<div>
+<Header />
+<div className="container" style={{ minHeight: "85vh" }}>
+<div className="row py-3">
+<div className="col-4 offset-2">
+<AddRandomContact />
+</div>
+<div className="col-4">
+<RemoveAllContacts />
+                </div>
+                
+<div className="row py-2">
+<AddContact />
+</div>
+<div className="row py-2">
+<FavoriteContacts />
+</div>
+<div className="row py-2">
+<GeneralContacts />
+</div>
+</div>
+</div>
+<Footer />
+</div>
+
+);
+}
+}
+export default ContactIndex;
+    
 
 
 
