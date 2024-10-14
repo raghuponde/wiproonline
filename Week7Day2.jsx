@@ -201,8 +201,7 @@ return (
 </div>
 <Footer />
 </div>
-so now the image will look like this
-Now i will work with AddContact.jsx file now changing the code is like this
+
 );
 }
 }
