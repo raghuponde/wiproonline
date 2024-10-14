@@ -97,7 +97,72 @@ Now add some page in ContactPages folder
     FavoriteContacts.jsx 
     RemoveAllContacts.jsx 
 
-
+RemoveAllContacts
+**********************************
+const RemoveAllContacts = () => {
+return (
+<div>
+<button className="btn btn-danger form-control">Remove All</button>
+</div>
+);
+};
+export default RemoveAllContact;
+GeneralContacts
+****************************************
+const GeneralContacts = () => {
+return (
+<div>
+<button className="btn btn-secondary form-control">
+General Contact
+</button>
+</div>
+);
+};
+export default GeneralContacts;
+FavoriteContacts
+*****************
+const FavoriteContacts = () => {
+return (
+<div>
+<button className="btn btn-secondary form-control">
+Favorite Contacts
+</button>
+</div>
+);
+};
+export default FavoriteContacts;
+Contact
+**********************
+const Contact = () => {
+return (
+<div>
+<button className="btn btn-secondary form-control">Contact</button>
+</div>
+);
+};
+export default Contact;
+AddRandomContact
+******************
+const AddRandomContact = () => {
+return (
+<div>
+<button className="btn btn-danger form-control">
+Add Random Contact
+</button>
+</div>
+);
+};
+export default AddRandomContact;
+AddContact
+***********************
+const AddContact = () => {
+return (
+<div>
+<button className="btn btn-secondary form-control">Add Contact</button>
+</div>
+);
+};
+export default AddContact;
 
 
 
