@@ -165,7 +165,48 @@ return (
 export default AddContact;
 
 
+Now i am adding ContactIndex.js file where it will store header and footer also and all the files which i have defined will also be projected here 
 
+    import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContact from "./RemoveAllContact";
+class ContactIndex extends React.Component {
+render() {
+return (
+<div>
+<Header />
+<div className="container" style={{ minHeight: "85vh" }}>
+<div className="row py-3">
+<div className="col-4 offset-2">
+<AddRandomContact />
+</div>
+<div className="col-4">
+<RemoveAllContact />
+</div>
+<div className="row py-2">
+<AddContact />
+</div>
+<div className="row py-2">
+<FavoriteContacts />
+</div>
+<div className="row py-2">
+<GeneralContacts />
+</div>
+</div>
+</div>
+<Footer />
+</div>
+so now the image will look like this
+Now i will work with AddContact.jsx file now changing the code is like this
+);
+}
+}
+export default ContactIndex;
     
 
 
