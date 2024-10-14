@@ -468,5 +468,157 @@ props.contact.isFavorite ? "btn-warning" : "btn-outline-warning"
 };
 export default Contact;
 
+chnaing look and feel of desging 
+-----------------------------------
+  const AddContact = () => {
+return (
+<div className="border col-12 text-white p-2">
+<div className="row p-2">
+<div className="col-12 text-white-50">Add a new Contact</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Name..."
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Email..."
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Phone..."
+></input>
+</div>
+<div className="col-12 col-md-6 offset-md-3 p-1">
+<button className="btn btn-primary btn-sm form-control">
+Create
+</button>
+</div>
+</div>
+</div>
+);
+};
+export default AddContact;
+*********************************************************************
+import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContact from "./RemoveAllContact";
+class ContactIndex extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+contactList: [
+{
+id: 1,
+name: "Ben Parker",
+phone: "666-666-7770",
+email: "ben@dotnetmastery.com",
+isFavorite: false,
+},
+{
+id: 2,
+name: "Kathy Patrick",
+phone: "111-222-0000",
+email: "kathy@dotnetmastery.com",
+isFavorite: true,
+},
+{
+id: 3,
+name: "Paul Show",
+phone: "999-222-1111",
+email: "paul@dotnetmastery.com",
+isFavorite: true,
+},
+],
+};
+}
+render() {
+return (
+<div>
+<Header />
+<div className="container" style={{ minHeight: "85vh" }}>
+<div className="row py-3">
+<div className="col-4 offset-2">
+<AddRandomContact />
+</div>
+<div className="col-4">
+<RemoveAllContact />
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<AddContact />
+</div>
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<FavoriteContacts
+contacts={this.state.contactList.filter(
+(u) => u.isFavorite == true
+)}
+/>
+</div>
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<GeneralContacts
+contacts={this.state.contactList.filter(
+(u) => u.isFavorite == false
+)}
+/>
+</div>
+</div>
+</div>
+</div>
+<Footer />
+</div>
+);
+}
+}
+export default ContactIndex;
+***************************************************************
+import Contact from "./Contact";
+const FavoriteContacts = (props) => {
+return (
+<div
+className="col-12 py-2"
+style={{ borderRadius: "10px", backgroundColor: "#323637" }}
+>
+<div className="text-center text-white-50">Favorites</div>
+<div className="p-2">
+{props.contacts.map((contact, index) => (
+<Contact contact={contact} key={index}></Contact>
+))}
+</div>
+</div>
+);
+};
+export default FavoriteContacts;
+******************************************************************************
 
+import Contact from "./Contact";
+const GeneralContacts = (props) => {
+return (
+<div
+className="col-12 py-2"
+style={{ borderRadius: "10px", backgroundColor: "#323637" }}
+>
+<div className="text-center text-white-50">Other Contacts</div>
+<div className="p-2">
+{props.contacts.map((contact, index) => (
+<Contact contact={contact} key={index}></Contact>
+))}
+</div>
+</div>
+);
+};
+export default GeneralContacts;
     
