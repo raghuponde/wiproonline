@@ -375,10 +375,46 @@ return (
 export default ContactIndex;
     
   
+Now go to favoritrs and genrral conatcts read the collection and put each value in contact and 
+
+  
+import Contact from "./Contact";
+const FavoriteContacts = (props) => {
+return (
+<div>
+        {props.contacts.map((contact, index) => (
+         
+            <Contact contact={contact} key={index}></Contact>
+     ))}   
+</div>
+);
+};
+export default FavoriteContacts;
+  ---------------------------------------
+  
+import Contact from "./Contact";
+const GeneralContacts = (props) => {
+return (
+<div>
+ {props.contacts.map((contact, index) => (
+         
+            <Contact contact={contact} key={index}></Contact>
+     ))}   
+</div>
+);
+};
+export default GeneralContacts;
 
 
-
-
+----------------------
+  const Contact = (props) => {
+return (
+<div>
+        <button className="btn btn-secondary form-control">{props.contact.name }</button>
+</div>
+);
+};
+export default Contact;
 
 
 
