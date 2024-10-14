@@ -768,9 +768,166 @@ class AddContact extends React.Component {
 }
 export default AddContact;
 
+Now I will put name to eac control and in e target i will catch the values in form submit and that i will passs to contackindex method whch i am calling 
+  and there using spreead operator frist object is added then prepty is added and finallly is favourite i am decidng so here in state to the collectiomn i have to add'
+  so previos state is imp 
 
+  addcontact.jsx 
+  *****************
+  
+import React from "react";
+class AddContact extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+        errorMessage: undefined,
+        successMessage: undefined,
+        };
+        }
+      handleAddContactFormSubmit = (e) => {
+e.preventDefault();
+const name = e.target.elements.contactName.value.trim();
+const email = e.target.elements.contactEmail.value.trim();
+const phone = e.target.elements.contactPhone.value.trim();
+this.props.handleAddContact({ name: name, email: email, phone: phone });
+};
+        render() {
+        return (
+        <div className="border col-12 text-white p-2">
+        <form onSubmit={this.handleAddContactFormSubmit}>
+        <div className="row p-2">
+        <div className="col-12 text-white-50">Add a new Contact</div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+                                placeholder="Name..."
+                                name="contactName"
+        ></input>
+        </div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+                                placeholder="Email..."
+                                name="contactEmail"
+        ></input>
+        </div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+                                placeholder="Phone..."
+                                name="contactPhone"
+        ></input>
+        </div>
+        <div className="col-12 col-md-6 offset-md-3 p-1">
+        <button className="btn btn-primary btn-sm form-control">
+        Create
+        </button>
+        </div>
+        </div>
+        </form>
+        </div>
 
+);
+}
+}
+export default AddContact;
 
+  ContactIndex.jsx 
+  ----------------
+  
+import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContact from "./RemoveAllContacts";
+class ContactIndex extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+contactList: [
+{
+id: 1,
+name: "Ben Parker",
+phone: "666-666-7770",
+email: "ben@dotnetmastery.com",
+isFavorite: false,
+},
+{
+id: 2,
+name: "Kathy Patrick",
+phone: "111-222-0000",
+email: "kathy@dotnetmastery.com",
+isFavorite: true,
+},
+{
+id: 3,
+name: "Paul Show",
+phone: "999-222-1111",
+email: "paul@dotnetmastery.com",
+isFavorite: true,
+},
+],
+};
+    }
+   handleAddContact = (newContact) => {
+const newFinalContact = {
+            ... newContact,
+            id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+            isFavorite: false,
+            };
+            this.setState((prevState) => {
+            return {
+            contactList: prevState.contactList.concat([newFinalContact]),
+            };
+            });
+            alert("hello");
+};
+render() {
+return (
+                <div>
+                <Header />
+                <div className="container" style={{ minHeight: "85vh" }}>
+                <div className="row py-3">
+                <div className="col-4 offset-2">
+                <AddRandomContact />
+                </div>
+                <div className="col-4">
+                <RemoveAllContact />
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <AddContact  handleAddContact={this.handleAddContact} />
+                </div>
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <FavoriteContacts
+                contacts={this.state.contactList.filter(
+                (u) => u.isFavorite == true
+                )}
+                />
+                </div>
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <GeneralContacts
+                contacts={this.state.contactList.filter(
+                (u) => u.isFavorite == false
+                )}
+                />
+                </div>
+                </div>
+                </div>
+                </div>
+                <Footer />
+                </div>
+);
+}
+}
+export default ContactIndex;
 
 
 
