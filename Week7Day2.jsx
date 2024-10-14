@@ -87,7 +87,15 @@ root.render(
 
 
 
+Now add some page in ContactPages folder 
 
+    AddContact.jsx 
+    AddRandomContact.jsx 
+    Contact.jsx 
+    ContactIndex.jsx 
+    GeneralContacts.jsx 
+    FavoriteContacts.jsx 
+    RemoveAllContacts.jsx 
 
 
 
