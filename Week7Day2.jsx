@@ -1125,3 +1125,229 @@ contacts={this.state.contactList.filter(
 }
 export default ContactIndex;
 
+toggle event codes 
+  -----------------
+import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContact from "./RemoveAllContact";
+class ContactIndex extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+contactList: [
+{
+id: 1,
+name: "Ben Parker",
+phone: "666-666-7770",
+email: "ben@dotnetmastery.com",
+isFavorite: false,
+},
+{
+id: 2,
+name: "Kathy Patrick",
+phone: "111-222-0000",
+email: "kathy@dotnetmastery.com",
+isFavorite: true,
+},
+{
+id: 3,
+name: "Paul Show",
+phone: "999-222-1111",
+email: "paul@dotnetmastery.com",
+isFavorite: true,
+},
+],
+};
+}
+handleAddContact = (newContact) => {
+if (newContact.name == "") {
+return { status: "failure", msg: "Please Enter a valid Name" };
+} else if (newContact.phone == "") {
+return { status: "failure", msg: "Please Enter a valid Phone Number" };
+}
+const duplicateRecord = this.state.contactList.filter((x) => {
+if (x.name == newContact.name && x.phone == newContact.phone) {
+return true;
+}
+});
+if (duplicateRecord.length > 0) {
+return { status: "failure", msg: "Duplicate Record" };
+} else {
+const newFinalContact = {
+... newContact,
+id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+isFavorite: false,
+};
+this.setState((prevState) => {
+return {
+contactList: prevState.contactList.concat([newFinalContact]),
+};
+});
+return { status: "success", msg: "Contact was added successfully" };
+}
+};
+handleToggleFavorites = (contact) => {
+this.setState((prevState) => {
+return {
+contactList: prevState.contactList.map((obj) => {
+if (obj.id == contact.id) {
+return { ... obj, isFavorite: !obj.isFavorite };
+}
+return obj;
+}),
+};
+});
+};
+render() {
+return (
+<div>
+<Header />
+<div className="container" style={{ minHeight: "85vh" }}>
+<div className="row py-3">
+<div className="col-4 offset-2">
+<AddRandomContact />
+</div>
+<div className="col-4">
+<RemoveAllContact />
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<AddContact handleAddContact={this.handleAddContact} />
+</div>
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<FavoriteContacts
+contacts={this.state.contactList.filter(
+(u) => u.isFavorite == true
+)}
+favoriteClick={this.handleToggleFavorites}
+/>
+</div>
+</div>
+<div className="row py-2">
+<div className="col-8 offset-2 row">
+<GeneralContacts
+contacts={this.state.contactList.filter(
+(u) => u.isFavorite == false
+)}
+favoriteClick={this.handleToggleFavorites}
+/>
+</div>
+</div>
+</div>
+</div>
+<Footer />
+</div>
+);
+}
+}
+export default ContactIndex;
+
+-----------------------------------------------------------------
+import Contact from "./Contact";
+const FavoriteContacts = (props) => {
+return (
+<div
+className="col-12 py-2"
+style={{ borderRadius: "10px", backgroundColor: "#323637" }}
+>
+<div className="text-center text-white-50">Favorites</div>
+<div className="p-2">
+{props.contacts.map((contact, index) => (
+<Contact
+contact={contact}
+key={index}
+favoriteClick={props.favoriteClick}
+></Contact>
+))}
+</div>
+</div>
+);
+};
+export default FavoriteContacts;
+
+
+-------------------------------------------------------------------------
+import Contact from "./Contact";
+const GeneralContacts = (props) => {
+return (
+<div
+className="col-12 py-2"
+style={{ borderRadius: "10px", backgroundColor: "#323637" }}
+>
+<div className="text-center text-white-50">Other Contacts</div>
+<div className="p-2">
+{props.contacts.map((contact, index) => (
+<Contact
+contact={contact}
+key={index}
+favoriteClick={props.favoriteClick}
+></Contact>
+))}
+</div>
+</div>
+);
+};
+export default GeneralContacts;
+
+--------------------------------------------------------------------------------------
+const Contact = (props) => {
+return (
+<div
+className="row p-md-2 mb-2"
+style={{ borderRadius: "20px", border: "1px solid #555" }}
+>
+<div className="col-2 col-md-1 pt-2 pt-md-1">
+<img
+src={`https://ui-avatars.com/api/?name=${props.contact.name}`}
+style={{ width: "80%" }}
+alt=""
+/>
+</div>
+<div className="col-6 col-md-5 text-warning pt-0">
+<span className="h4">{props.contact.name}</span>
+<br />
+<div className="text-white-50">
+{props.contact.email}
+<br />
+{props.contact.phone}
+</div>
+</div>
+<div className="col-2 col-md-2 pt-md-3">
+<button
+className={`btn btn-sm m-1 ${
+props.contact.isFavorite ? "btn-warning" : "btn-outline-warning"
+}`}
+onClick={() => props.favoriteClick(props.contact)}
+>
+<i className="bi bi-star" style={{ fontSize: "1rem" }}></i>
+</button>
+</div>
+<div className="col-2 col-md-3 pt-md-3">
+<button className="btn btn-primary btn-sm m-1">
+
+<i className="bi bi-pencil-square" style={{ fontSize: "1rem" }}></i>
+</button>
+<button className="btn btn-danger btn-sm m-1">
+<i className="bi bi-trash-fill" style={{ fontSize: "1rem" }}></i>
+</button>
+</div>
+</div>
+);
+};
+export default Contact;
+
+
+
+
+
+
+
+
+  
