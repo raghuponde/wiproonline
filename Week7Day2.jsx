@@ -511,7 +511,7 @@ import AddContact from "./AddContact";
 import AddRandomContact from "./AddRandomContact";
 import FavoriteContacts from "./FavoriteContacts";
 import GeneralContacts from "./GeneralContacts";
-import RemoveAllContact from "./RemoveAllContact";
+import RemoveAllContact from "./RemoveAllContacts";
 class ContactIndex extends React.Component {
 constructor(props) {
 super(props);
@@ -621,4 +621,157 @@ style={{ borderRadius: "10px", backgroundColor: "#323637" }}
 );
 };
 export default GeneralContacts;
-    
+
+
+here i am adding one methd to cntactindex ad contact so wat ever logic is there in that method will be executed 
+
+  import React from "react";
+import Footer from "../Layout/Footer";
+import Header from "../Layout/Header";
+import AddContact from "./AddContact";
+import AddRandomContact from "./AddRandomContact";
+import FavoriteContacts from "./FavoriteContacts";
+import GeneralContacts from "./GeneralContacts";
+import RemoveAllContact from "./RemoveAllContacts";
+class ContactIndex extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+contactList: [
+{
+id: 1,
+name: "Ben Parker",
+phone: "666-666-7770",
+email: "ben@dotnetmastery.com",
+isFavorite: false,
+},
+{
+id: 2,
+name: "Kathy Patrick",
+phone: "111-222-0000",
+email: "kathy@dotnetmastery.com",
+isFavorite: true,
+},
+{
+id: 3,
+name: "Paul Show",
+phone: "999-222-1111",
+email: "paul@dotnetmastery.com",
+isFavorite: true,
+},
+],
+};
+    }
+    handleAddContact = () =>
+    {
+        alert("hello");
+    }
+render() {
+return (
+                <div>
+                <Header />
+                <div className="container" style={{ minHeight: "85vh" }}>
+                <div className="row py-3">
+                <div className="col-4 offset-2">
+                <AddRandomContact />
+                </div>
+                <div className="col-4">
+                <RemoveAllContact />
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <AddContact  handleAddContact={this.handleAddContact} />
+                </div>
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <FavoriteContacts
+                contacts={this.state.contactList.filter(
+                (u) => u.isFavorite == true
+                )}
+                />
+                </div>
+                </div>
+                <div className="row py-2">
+                <div className="col-8 offset-2 row">
+                <GeneralContacts
+                contacts={this.state.contactList.filter(
+                (u) => u.isFavorite == false
+                )}
+                />
+                </div>
+                </div>
+                </div>
+                </div>
+                <Footer />
+                </div>
+);
+}
+}
+export default ContactIndex;
+so here I  am sending as props to addconatct the function logic 
+
+
+there in add contact i am having another form submit event is there there i am calling one function again and in that function 
+  i am calling above methood and preventing deault submit metod also
+
+  add contact 
+  -------------
+  import React from "react";
+class AddContact extends React.Component {
+        constructor(props) {
+        super(props);
+        this.state = {
+        errorMessage: undefined,
+        successMessage: undefined,
+        };
+        }
+        handleAddContactFormSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleAddContact();
+        };
+        render() {
+        return (
+        <div className="border col-12 text-white p-2">
+        <form onSubmit={this.handleAddContactFormSubmit}>
+        <div className="row p-2">
+        <div className="col-12 text-white-50">Add a new Contact</div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+        placeholder="Name..."
+        ></input>
+        </div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+        placeholder="Email..."
+        ></input>
+        </div>
+        <div className="col-12 col-md-4 p-1">
+        <input
+        className="form-control form-control-sm"
+        placeholder="Phone..."
+        ></input>
+        </div>
+        <div className="col-12 col-md-6 offset-md-3 p-1">
+        <button className="btn btn-primary btn-sm form-control">
+        Create
+        </button>
+        </div>
+        </div>
+        </form>
+        </div>
+
+);
+}
+}
+export default AddContact;
+
+
+
+
+
+
+
+  
