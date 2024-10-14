@@ -75,6 +75,17 @@ export default Footer;
 Index.jsx 
  ********
 
+import React from 'react';
+import ReactDOM from 'react-dom/client'
+import Header from './Components/Layout/Header'
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <div>
+    <Header />
+  </div>
+);
+
+
 
 
 
