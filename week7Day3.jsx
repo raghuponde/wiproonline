@@ -91,4 +91,121 @@ style={{ fontSize: "1rem" }}
 };
 export default Contact;
 
+Now i want to add user from a web api for that axios i will be using first in conatct index 
+-------------------------------------------------------------------------------------------
+  handleAddRandomContact={this.handleAddRandomContact}  (for AddRanmdomContact in contact index ) 
+
+and code for the method is 
+
+handleAddRandomContact = (newContact) => {
+const newFinalContact = {
+... newContact,
+id: this.state.contactList[this.state.contactList.length - 1].id + 1,
+isFavorite: false,
+};
+this.setState((prevState) => {
+return {
+contactList: prevState.contactList.concat([newFinalContact]),
+};
+});
+};
+
+so herewhat i am doing is that this above method will be called inside another method of add random contact method and there one web api will be called 
+now frist install this in command 
+npm install axios
+
+then create one folder in project Utitlity and in add ome file api.jsx 
+api.jsx 
+---------
+import axios from "axios";
+const getRandomUser = async () => {
+const response = await axios.get(
+"https://random-data-api.com/api/v2/users?size=2&is_xml=true",
+{
+headers: {},
+params: {
+size: 1,
+},
+}
+);
+return response;
+};
+export { getRandomUser };
+
+now come to Addrandom contact 
+-------------------------------
+  partial code to check whether i am getting the user or not 
+
+import { getRandomUser } from "../../Utility/api";
+const GetRandomContact = async () => {
+const responseFromAPI = await getRandomUser();
+console.log(responseFromAPI);
+};
+const AddRandomContact = () => {
+return (
+<div>
+<button
+className="btn btn-success form-control"
+onClick={() => GetRandomContact()}
+>
+Add Random Contact
+</button>
+</div>
+);
+};
+export default AddRandomContact;
+
+after chekcing in console log user i am getting or not 
+---------------------------------------------------------
+complete code 
+-----------------
+import { getRandomUser } from "../../Utility/api";
+const GetRandomContact = async (props) => {
+const responseFromAPI = await getRandomUser();
+console.log(responseFromAPI);
+return props.handleAddRandomContact({
+name:
+responseFromAPI.data.first_name + " " + responseFromAPI.data.last_name,
+email: responseFromAPI.data.email,
+phone: responseFromAPI.data.phone_number,
+});
+};
+const AddRandomContact = (props) => {
+return (
+<div>
+<button
+className="btn btn-success form-control"
+onClick={() => GetRandomContact(props)}
+>
+Add Random Contact
+</button>
+
+</div>
+);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
