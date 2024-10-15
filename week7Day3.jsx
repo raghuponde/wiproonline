@@ -943,8 +943,53 @@ in cycloPediaclas page
 )}
 remove design of instructro in cyclo page and that is gone in instructor so u can remove i  desing and import Instrctor it will work 
 
-    
-    
+    Now i want to do toggle meams hide it the then unmount iwant to check 
 
+    after first div of return metho in cyclopedia 
+-----------------------------------------------------
+    <div className="p-3">
+
+<i
+className={` bi ${
+this.state.hideInstructor ? "bi-toggle-off" : "bi-toggle-on"
+} btn btn-success btn-sm`}
+onClick={this.handletoggleInstructor}
+></i>
+{!this.state.hideInstructor ? (
+<Instructor instructor={this.state.instructor} />
+) : null}
+</div>
+
+  and in instrcutor 
+    -------------------
+import React from "react";
+class Instructor extends React.Component {
+            constructor(props) {
+            super(props);
+            }
+            componentDidUpdate() {
+            console.log("Update - Instructor");
+            }
+            componentDidMount() {
+            console.log("Mounted - Instructor");
+            }
+            componentWillUnmount() {
+            console.log("UnMount - Instructor");
+
+            }
+render() {
+console.log("Render - Instructor");
+return (
+<div className="">
+Name: {this.props.instructor.name} <br />
+Email : {this.props.instructor.email}
+<br />
+Phone : {this.props.instructor.phone}
+<br />
+</div>
+);
+}
+}
+export default Instructor;
 
 
