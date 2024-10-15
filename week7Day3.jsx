@@ -941,7 +941,9 @@ in cycloPediaclas page
     {this.state.instructor && (
 <Instructor instructor={this.state.instructor} />
 )}
+remove design of instructro in cyclo page and that is gone in instructor so u can remove i  desing and import Instrctor it will work 
 
+    
     
 
 
