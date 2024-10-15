@@ -231,10 +231,45 @@ Remove All
 };
 export default RemoveAllContact;
 
+Now update i want to do 
+  --------------------------
+  two proeprties add it to array contactList 
+
+  ],
+selectedContact: undefined,
+isUpdating: false,
+
+  Add ths tp favorites and general in contact index 
+
+  updateClick={this.handleUpdateClick}
+
+  and the code for the method written above render () mehtod
+
+  handleUpdateClick = (contact) => {
+console.log(contact);
+this.setState((prevState) => {
+return {
+selectedContact: contact,
+isUpdating: true,
+};
+});
+};
 
 
+in the fav and geebral 
 
+  updateClick={props.updateClick}
 
+  fnally in contact 
+
+  <div className="col-2 col-md-3 pt-md-3">
+<button className="btn btn-primary btn-sm m-1">
+<i
+className="bi bi-pencil-square"
+onClick={() => props.updateClick(props.contact)}//chnage done
+style={{ fontSize: "1rem" }}
+></i>
+</button>
 
 
 
