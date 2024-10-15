@@ -187,8 +187,49 @@ Add Random Contact
 export default AddRandomContact;
 
 
+Now i will write code for remove all contact 
+------------------------------------------
+  handleRemoveAllContact = () => {
+this.setState((prevState) => {
+return {
+contactList: [],
+};
+});
+};
 
+render() {
+return (
+<div>
+<Header />
+<div className="container" style={{ minHeight: "85vh" }}>
+<div className="row py-3">
+<div className="col-4 offset-2 row">
+<AddRandomContact
+handleAddRandomContact={this.handleAddRandomContact}
+/>
+</div>
+<div className="col-4 row">
+<RemoveAllContact
+handleRemoveAllContact={this.handleRemoveAllContact} 
+/>
+</div>
 
+Then go to remove all contacts 
+  ---------------------------
+
+  const RemoveAllContact = (props) => {
+return (
+<div>
+<button
+className="btn btn-danger form-control"
+onClick={() => props.handleRemoveAllContact()}
+>
+Remove All
+</button>
+</div>
+);
+};
+export default RemoveAllContact;
 
 
 
