@@ -487,8 +487,8 @@ this.setState({ errorMessage: response.msg, successMessage: undefined
 }
 };
 
-add hidden field  
- -------------
+add hidden field  after form tag 
+ -------------------------------------
     <input
 hidden
 name="contactId"
@@ -497,7 +497,91 @@ this.props.isUpdating ? this.props.selectedContact.id : ""
 }
 ></input>
 
+NOw i will work on new project where i will learn about life cycle methods of class compoent
 
+    create a new project with name classlifecycle and do the intial adjustments for that inital adjustments code is below okay 
+
+index.html
+------------
+<!DOCTYPE html>
+<html lang="en">
+index
+<head>
+<meta charset="utf-8" />
+<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#000000" />
+<meta name="description" content="Web site created using create-react-app"
+/>
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+rel="stylesheet"
+integrity="sha384-
+Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+crossorigin="anonymous" />
+<script
+src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js
+"
+integrity="sha384-
+oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+crossorigin="anonymous"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+integrity="sha384-
+IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrapicons@
+1.10.2/font/bootstrap-icons.css" />
+<title>React App</title>
+</head>
+<body style="background-color: black">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+</body>
+</html>
+index.js
+-------------
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Header from './Header';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+<div>
+<Header />
+</div>
+);
+Header.jsx
+--------------
+
+import logo from "./images/logo512.png"
+function Header() {
+return (
+<div className="py-2 pl-2" style={{ borderBottom: "1px solid #777" }}>
+<img src={logo} alt="" style={{ height: "35px", verticalAlign: "top" }}
+/>
+<span className="h2 pt-4 m-2 text-white-50">
+CycleOPedia
+</span>
+</div>
+);
+}
+export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 
 
