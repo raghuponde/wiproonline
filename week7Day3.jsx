@@ -568,9 +568,102 @@ CycleOPedia
 export default Header;
 
 
+Add one class with the name CyclOPediaClassPage.jsx file in src folder now i want to read one
+user from api like earlier and display list of students for the course so we have to install axios
+now again as i am calling a web api method over here okay
+npm install axios
+create folder Utility and in that api. Jsx again same as earlier do it first okay
 
+api.jsx
+**********
+import axios from "axios";
+const getRandomUser = async () => {
+const response = await axios.get(
+"https://random-data-api.com/api/v2/users?size=2&is_xml=true",
+{
+headers: {},
+params: {
+size: 1,
+},
+}
+);
+return response;
+};
+export { getRandomUser };
+CyclOPediaClassPage.jsx
+***********************
+import React from "react";
+import { getRandomUser } from "./Utility/api";
+class CyclOPediaClassPage extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+instructor: undefined,
+studentList: [],
+studentCount: 0,
+hideInstructor: false,
+};
+}
+componentDidMount = async () => {
+console.log("Component Did Mount");
+const response = await getRandomUser();
+console.log(response);
+this.setState((prevState) => {
+return {
+instructor: {
+name: response.data.first_name + " " + response.data.last_name,
+email: response.data.email,
+phone: response.data.phone_number,
+},
+};
+});
+};
+componentDidUpdate() {
+console.log("Component Did Update");
+}
+componentWillUnmount() {
+console.log("Component Will UnMount");
+}
+render() {
+console.log("Render Component");
+return (
+<div>
+{this.state.instructor && (
+<div className="p-3">
+<span className="h4 text-success">Instructor</span>
+<i className=" bi bi-toggle-off btn btn-success btn-sm"></i>
+<br />
+Name: {this.state.instructor.name} <br />
+Email : {this.state.instructor.email}
+<br />
+Phone : {this.state.instructor.phone}
+<br />
+</div>
+)}
+</div>
+);
+}
+}
+export default CyclOPediaClassPage;
+index.jsx
+**********
+import React from "react";
+import ReactDOM from "react-dom/client";
+import CyclOPediaClassPage from "./CyclOPediaClassPage";
+import Header from "./Header";
 
-
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+<div>
+<Header />
+<div className="row text-white">
+<div className="col-6">
+<span className="h1 text-warning text-center">Class Component</span>
+<CyclOPediaClassPage />
+</div>
+</div>
+</div>
+);
 
 
 
