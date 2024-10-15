@@ -266,20 +266,236 @@ in the fav and geebral
 <button className="btn btn-primary btn-sm m-1">
 <i
 className="bi bi-pencil-square"
-onClick={() => props.updateClick(props.contact)}//chnage done
+onClick={() => props.updateClick(props.contact)}
 style={{ fontSize: "1rem" }}
 ></i>
 </button>
 
+In the contact Index 
+---------------------
+    add these proerties to Addcontact element 
+
+    isUpdating={this.state.isUpdating} 
+selectedContact={this.state.selectedContact} 
+cancelUpdateContact={this.handleCancelUpdateContact}
+
+    In Contact Index 
+    ------------------
+    handleCancelUpdateContact = (contact) => {
+console.log(contact);
+this.setState((prevState) => {
+return {
+selectedContact: undefined,
+isUpdating: false,
+};
+});
+};
+
+Next go to Add contact 
+
+    Add contacts.jsx 
+    -------------------
+    import React from "react";
+class AddContact extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+errorMessage: undefined,
+successMessage: undefined,
+};
+}
+//chnage done added one function
+handleCancel = () => {
+this.props.cancelUpdateContact();
+};
+handleAddContactFormSubmit = (e) => {
+e.preventDefault();
+const name = e.target.elements.contactName.value.trim();
+const email = e.target.elements.contactEmail.value.trim();
+const phone = e.target.elements.contactPhone.value.trim();
+const response = this.props.handleAddContact({
+name: name,
+email: email,
+phone: phone,
+});
+if (response.status == "success") {
+this.setState({ errorMessage: undefined, successMessage: response.msg
+});
+document.querySelector(".contact-form").reset();
+} else {
+this.setState({ errorMessage: response.msg, successMessage: undefined
+});
+}
+};
+render() {
+return (
+<div className="border col-12 text-white p-2">
+<form
+onSubmit={this.handleAddContactFormSubmit}
+className="contact-form"
+>
+<div className="row p-2">
+<div className="col-12 text-white-50">
+//change done
+{this.props.isUpdating ? "Update Contact" : "Add a new Contact"}
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Name..."
+name="contactName"
+//change done
+defaultValue={
+this.props.isUpdating ? this.props.selectedContact.name : ""
+}
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Email..."
+name="contactEmail"
+//change done
+defaultValue={
+this.props.isUpdating ? this.props.selectedContact.email :
+""
+}
+></input>
+</div>
+<div className="col-12 col-md-4 p-1">
+<input
+className="form-control form-control-sm"
+placeholder="Phone..."
+name="contactPhone"
+//change done
+defaultValue={
+this.props.isUpdating ? this.props.selectedContact.phone :
+""
+}
+></input>
+</div>
+{this.state.errorMessage == undefined ? (
+<div></div>
+) : (
+<div className="col-12 text-center text-danger">
+{this.state.errorMessage}
+</div>
+)}
+{this.state.successMessage == undefined ? (
+<div></div>
+) : (
+<div className="col-12 text-center text-success">
+{this.state.successMessage}
+</div>
+)}
+// here in design lot of change done
+<div
+className={`col-12 p-1 ${
+this.props.isUpdating
+? "col-md-4 offset-md-2"
+: "col-md-6 offset-md-3"
+}`}
+>
+<button className="btn btn-primary btn-sm form-control">
+{this.props.isUpdating ? "Update" : "Create"}
+</button>
+</div>
+<div className="col-12 col-md-4 p-1">
+{this.props.isUpdating && (
+<button
+className="btn btn-secondary form-control btn-sm"
+onClick={this.handleCancel}
+>
+Cancel
+</button>
+)}
+</div>
+</div>
+</form>
+</div>
+);
+}
+}
+export default AddContact;
 
 
 
+Finally i will add another event to add contact 
 
+    handleUpdateContact={this.handleUpdateContact}
 
+    and code for that write above render or return mehod 
 
+    handleUpdateContact = (updatedContact) => {
+console.log(updatedContact);
+if (updatedContact.name == "") {
+return { status: "failure", msg: "Please Enter a valid Name" };
+} else if (updatedContact.phone == "") {
+return { status: "failure", msg: "Please Enter a valid Phone Number" };
+}
+this.setState((prevState) => {
+return {
+contactList: prevState.contactList.map((obj) => {
+if (obj.id == updatedContact.id) {
+return {
+... obj,
+name: updatedContact.name,
+email: updatedContact.email,
+phone: updatedContact.phone,
+};
+}
+return obj;
+}),
+isUpdating: false,
+selectedContact: undefined,
+};
+});
+return { status: "success", msg: "Contact was updated successfully" };
+};
 
+so in same add contacts i need to change the logic of addocnatct if updating one mehod is called otheriwse another mwrhod 
 
+    handleAddContactFormSubmit = (e) => {
+e.preventDefault();
+const name = e.target.elements.contactName.value.trim();
+const email = e.target.elements.contactEmail.value.trim();
+const phone = e.target.elements.contactPhone.value.trim();
+const id = e.target.elements.contactId.value.trim();
+let response = undefined;
+if (this.props.isUpdating) {
+response = this.props.handleUpdateContact({
+name: name,
+email: email,
+phone: phone,
+id: id,
+});
+} else {
+response = this.props.handleAddContact({
+name: name,
+email: email,
 
+phone: phone,
+});
+}
+if (response.status == "success") {
+this.setState({ errorMessage: undefined, successMessage: response.msg
+});
+document.querySelector(".contact-form").reset();
+} else {
+this.setState({ errorMessage: response.msg, successMessage: undefined
+});
+}
+};
+
+add hidden field  
+ -------------
+    <input
+hidden
+name="contactId"
+defaultValue={
+this.props.isUpdating ? this.props.selectedContact.id : ""
+}
+></input>
 
 
 
