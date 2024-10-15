@@ -689,7 +689,7 @@ studentCount: 0,
 className="btn btn-success btn-sm"
 onClick={this.handleAddStudent}
 >
-
+Add Student
 </button>
 &nbsp;
 <button
