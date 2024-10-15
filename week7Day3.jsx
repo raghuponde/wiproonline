@@ -665,6 +665,47 @@ root.render(
 </div>
 );
 
+Now add two buttons one add student and remove all students 
+
+  handleAddStudent = () => {
+this.setState((prevState) => {
+return {
+studentCount: prevState.studentCount + 1,
+};
+});
+};
+handleRemoveAllStudent = () => {
+this.setState((prevState) => {
+return {
+studentCount: 0,
+};
+});
+};
+// and then in render method add these things
+<div className="p-3">
+<span className="h4 text-success">Students</span> <br />
+<div>Student Count : {this.state.studentCount}</div>
+<button
+className="btn btn-success btn-sm"
+onClick={this.handleAddStudent}
+>
+
+</button>
+&nbsp;
+<button
+className="btn btn-danger btn-sm"
+onClick={this.handleRemoveAllStudent}
+>
+Remove All Students
+</button>
+</div>
+// add above lines after this in earlier code
+Phone : {this.state.instructor.phone}
+<br />
+</div>
+)}
+
+  
 
 
 
