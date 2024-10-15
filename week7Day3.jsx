@@ -707,7 +707,53 @@ Phone : {this.state.instructor.phone}
 
   
 
+check in browser console.log how update is called again and again adn how did mount is called u need  to analize this 
 
+Now i want to create a controlled component means when ever i am typing some thing in text
+box then the value which i am typing in text box should be stored in state automatically means
+something two way binding i want to do okay
+now add two properties one in state like this inputName and inputFeedback
+
+class CyclOPediaClassPage extends React.Component {
+constructor(props) {
+super(props);
+this.state = {
+instructor: undefined,
+studentList: [],
+studentCount: 0,
+hideInstructor: false,
+inputName: "",
+inputFeedback: "",
+};
+}
+
+so these properties here in this if i type whatever here in state same should reflect in text box
+
+which will binding from state to view
+
+Before that add two text boxes in design like this after same after phone code okay like earlier
+
+<div className="p-3">
+<span className="h4 text-success">Feedback</span>
+<br />
+<input
+type="text"
+value={this.state.inputName}
+placeholder="Name.."
+></input>
+<br />
+<textarea
+value={this.state.inputFeedback}
+placeholder="Feedback..."
+></textarea>
+</div>
+
+
+now i can see the output like this
+
+
+    
+    
 
 
 
