@@ -184,7 +184,7 @@ Add Random Contact
 );
 }
 
-
+export default AddRandomContact;
 
 
 
