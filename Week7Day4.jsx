@@ -1088,6 +1088,112 @@ console.log("This will be called on when component will be UNMOUNTED");
 };
 }, []);
 
+so now if u want to see the action of unmount in function then convert the instructor component
+into functional one
+
+  Instrucor code 
+  -----------------
+  import React from "react";
+import { useEffect } from "react";
+const InstructorFunc = (props) => {
+useEffect(() => {
+return () => {
+console.log("Instructor - UNMOUNTED");
+};
+}, []);
+return (
+<div className="">
+Name: {props.instructor.name} <br />
+Email : {props.instructor.email}
+<br />
+Phone : {props.instructor.phone}
+<br />
+</div>
+);
+};
+export default InstructorFunc;
+
+Filling the code of useeffects 
+  ------------------------------
+  useEffect(() => {
+console.log("This will be called on Initial/first Render/Mount");
+const getUser = async () => {
+const response = await getRandomUser();
+setState((prevState) => {
+return {
+... prevState,
+instructor: {
+name: response.data.first_name + " " + response.data.last_name,
+email: response.data.email,
+phone: response.data.phone_number,
+},
+};
+});
+};
+getUser();
+}, []);
+
+now here every time i am getting same user i want different user so logic is like this
+if hidden get the user okay
+
+  useEffect(() => {
+console.log("This will be called on Initial/first Render/Mount");
+const getUser = async () => {
+const response = await getRandomUser();
+setState((prevState) => {
+return {
+... prevState,
+instructor: {
+name: response.data.first_name + " " + response.data.last_name,
+email: response.data.email,
+phone: response.data.phone_number,
+},
+};
+});
+};
+if (state.hideInstructor) {
+getUser();
+}
+}, [state.hideInstructor]);
+
+logic for adding studnet in the array 
+  --------------------------------
+  useEffect(() => {
+const getUser = async () => {
+const response = await getRandomUser();
+setState((prevState) => {
+return {
+... prevState,
+studentList: [
+... prevState.studentList,
+{
+name: response.data.first_name + " " + response.data.last_name,
+},
+],
+};
+});
+};
+if (state.studentList.length < state.studentCount) {
+getUser();
+} else if (state.studentList.length > state.studentCount) {
+
+setState((prevState) => {
+return { ... prevState, studentList: [] };
+});
+}
+}, [state.studentCount]);
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
