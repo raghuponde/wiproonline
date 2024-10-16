@@ -481,7 +481,59 @@ root.render(
 );
 
 
+Now MoviePage i had added array 
 
+  and in Movie list that array i am passing it as props 
+
+  MoviePage.jsx updated 
+  ------------------------
+import React, { useState } from 'react'
+import AddMovie from './AddMovie'
+import MovieList from './MovieList'
+const  MoviePage=()=> {
+
+    const [movieState, setMovieState] = useState(() => {
+    
+        return { MovieList: ["DieHard","Hulk","THOR"] }
+    })
+    
+
+  return (
+      <div className='container col-12 col-md-6 my-3 border'>
+          <AddMovie />
+          <MovieList movieList={movieState.MovieList} />
+      </div>
+  )
+}
+
+export default MoviePage
+
+
+
+MovieList updated 
+  ---------------
+import React from 'react'
+
+const MovieList = (props) => {
+  return (
+   
+      <div className='text-white'>
+          {props.movieList.map((movie, index) => {
+              
+              return <div key={index}> {movie }</div>
+
+          })}
+      </div>
+      
+      
+  )
+}
+
+export default MovieList
+
+  
+
+  
 
 
 
