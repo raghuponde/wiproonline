@@ -415,7 +415,36 @@ const Counter = () =>
 
 export default Counter;
 
+  here in above program all the varities of using set state i have shown based on how u declare with Fun in design 
+Now u have to create one folder called as MovieComponents and in the files AddMovie.jsx ,MovieList.jsx and MoviePage.jsx 
+  in the Moviepage links for AddMovie and MovieList wll be there 
 
+  import React from 'react'
+
+function AddMovie() {
+    return (
+      <div>
+    
+      <form>
+                <div className="row text-white">
+                    <div className="col-12 text-center py-1 h4 text-success">Add Movie</div>
+                    <div className='col-8 offset-1'>
+                    <input type="text" placeholder='Movie name..'></input>
+                    </div>
+                    <div className='col-2'>
+                    <button className='btn btn-success  form-control'>Add</button> 
+                    </div>
+                   <hr className="mt-3" />
+                </div>     
+
+
+      </form>
+
+       </div>
+  )
+}
+
+export default AddMovie
 
 
 
