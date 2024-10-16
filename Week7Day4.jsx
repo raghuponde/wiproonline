@@ -906,7 +906,34 @@ Now in clas page
 
 
 
+Now further change in cyclofuncpage 
+  ----------------------------------
+  import React,{ useState } from "react";
+import { getRandomUser } from "./Utility/api";
+import Instructor from "./Instructor";
+const CycloPediaFuncPage = () => {
+    
+    const [state, setState] = useState(() => {
+         
+        return {
+           
+            instructor: undefined,
+            studentList: [],
+            studentCount: 0,
+            hideInstrcutor: false,
 
+        };
+
+
+    });
+    const [inputName, setInputName] = useState(() => {
+        return "";
+    })
+
+    const [inputFeedback, setInputFeedback] = useState(() => {
+        
+        return "";
+    })
   
 
 
