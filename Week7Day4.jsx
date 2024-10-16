@@ -143,7 +143,7 @@ Counter: &nbsp;
 </div>
 );
 }
-
+export default Counter
 
   and in index.jsx 
 
