@@ -615,8 +615,236 @@ onChange={(e) => setName(e.target.value)}
 };
 export default AddMovie;
 
+Now you have to open the project which i was doing for classevents ...
 
+  in that add two pages one is CycloPediaFuncPage.jsx and another is InstructorFunc.jsx 
+
+  and then copy the code of class into theses pages and chnage only names  class  typpe and export also change 
   
+
+  instrcutorfunc page 
+  --------------------
+  import React from "react";
+class InstructorFunc extends React.Component {
+            constructor(props) {
+            super(props);
+            }
+            componentDidUpdate() {
+            console.log("Update - Instructor");
+            }
+            componentDidMount() {
+            console.log("Mounted - Instructor");
+            }
+            componentWillUnmount() {
+            console.log("UnMount - Instructor");
+
+            }
+render() {
+console.log("Render - Instructor");
+return (
+<div className="">
+Name: {this.props.instructor.name} <br />
+Email : {this.props.instructor.email}
+<br />
+Phone : {this.props.instructor.phone}
+<br />
+</div>
+);
+}
+}
+export default InstructorFunc;
+
+
+cyclopediaFuncPage 
+  ------------------
+      import React from "react";
+import { getRandomUser } from "./Utility/api";
+import Instructor from "./Instructor";
+class CycloPediaFuncPage extends React.Component {
+constructor(props) {
+super(props);
+this.state = JSON.parse(localStorage.getItem("cylcopediaState")) || {
+instructor: undefined,
+studentList: [],
+studentCount: 0,
+hideInstructor: false,
+inputName: "",
+inputFeedback: "",
+};
+}
+componentDidMount = async () => {
+console.log("Component Did Mount");
+if (JSON.parse(localStorage.getItem("cylcopediaState"))) {
+// this.setState(JSON.parse(localStorage.getItem("cylcopediaState")));
+} else {
+const response = await getRandomUser();
+console.log(response);
+this.setState((prevState) => {
+return {
+instructor: {
+name: response.data.first_name + " " + response.data.last_name,
+email: response.data.email,
+phone: response.data.phone_number,
+},
+};
+});
+}
+};
+    componentDidUpdate = async (previousProps, previousState) =>
+    {
+            console.log("Component Did Update");
+            localStorage.setItem("cylcopediaState", JSON.stringify(this.state));
+            console.log("Old State - " + previousState.studentCount);
+            console.log("New State - " + this.state.studentCount);
+            if (previousState.studentCount < this.state.studentCount) {
+            const response = await getRandomUser();
+            this.setState((prevState) => {
+            return {
+            studentList: [
+            ... prevState.studentList,
+            {
+            name: response.data.first_name + " " + response.data.last_name,
+            },
+            ],
+            };
+            });
+            } else if (previousState.studentCount > this.state.studentCount) {
+            this.setState((prevState) => {
+            return {
+            studentList: [],
+            };
+            });
+            }
+};
+componentWillUnmount() {
+console.log("Component Will UnMount");
+}
+handleAddStudent = () => {
+this.setState((prevState) => {
+return {
+studentCount: prevState.studentCount + 1,
+};
+});
+};
+handleRemoveAllStudent = () => {
+this.setState((prevState) => {
+return {
+studentCount: 0,
+};
+});
+    };
+    handletoggleInstructor = () => {
+this.setState((prevState) => {
+return {
+hideInstructor: !prevState.hideInstructor,
+};
+});
+};
+render() {
+console.log("Render Component");
+return (
+    <div>
+         <div className="p-3">
+
+<i
+className={` bi ${
+this.state.hideInstructor ? "bi-toggle-off" : "bi-toggle-on"
+} btn btn-success btn-sm`}
+onClick={this.handletoggleInstructor}
+></i>
+{!this.state.hideInstructor ? (
+<Instructor instructor={this.state.instructor} />
+) : null}
+</div>
+    
+
+
+<div className="p-3">
+<span className="h4 text-success">Feedback</span>
+<br />
+<input
+type="text"
+value={this.state.inputName}
+placeholder="Name.."
+onChange={(e) => {
+this.setState({ inputName: e.target.value });
+}}
+></input>{" "}
+Value : {this.state.inputName}
+<br />
+<textarea
+value={this.state.inputFeedback}
+onChange={(e) => {
+this.setState({ inputFeedback: e.target.value });
+}}
+placeholder="Feedback..."
+></textarea>
+Value : {this.state.inputFeedback}
+</div>
+<div className="p-3">
+<span className="h4 text-success">Students</span> <br />
+<div>Student Count : {this.state.studentCount}</div>
+<button
+className="btn btn-success btn-sm"
+onClick={this.handleAddStudent}
+>
+Add Student
+</button>
+&nbsp;
+<button
+className="btn btn-danger btn-sm"
+onClick={this.handleRemoveAllStudent}
+>
+Remove All Students
+            </button>
+
+    {this.state.studentList.map((student, index) => {
+return (
+<div className="text-white" key={index}>
+- {student.name}
+</div>
+);
+})}
+
+</div>
+</div>
+);
+}
+}
+export default CycloPediaFuncPage;
+
+
+
+index.js 
+---------
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import CycloPediaClassPage from "./CycloPediaClassPage";
+import Header from "./Header";
+import CycloPediaFuncPage from "./CycloPediaFuncPage";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+<div>
+<Header />
+<div className="row text-white">
+<div className="col-6">
+<span className="h1 text-warning text-center">Class Component</span>
+<CycloPediaClassPage />
+            </div>
+            
+<div className="col-6">
+<span className="h1 text-warning text-center">Class Component</span>
+<CycloPediaFuncPage />
+</div>
+</div>
+</div>
+);
+
+
+
+
+
+
 
   
 
