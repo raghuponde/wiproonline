@@ -1,4 +1,4 @@
-
+e i
 Now i want to upload or load student from web api to array which is there in state of the class 
 
 for that the code is so didmount code is updated here 
@@ -327,7 +327,46 @@ export default Counter;
 
 
 
+Use state is an array so i can declare multiole name value pair object in it means counterState is a variable and it has many values like counter =10 and title='fun"
 
+  import { useState } from "react";
+// function intialsetup()
+// {
+// console.log("hello");
+// return 10;
+// }
+const Counter = () =>
+{
+    const [counterState, setCounterState] = useState(() => { return { counter: 10,title:"Fun" };});
+    
+    function incrementCounter()
+    {
+        setCounterState((prevState) => { return { counter:prevState.counter + 1 }; });
+    }
+
+    function decrementCounter()
+    {
+        setCounterState((prevState) => { return { counter: prevState.counter - 1 } });
+        setCounterState((prevState)=>{ return {counter:prevState.counter -1} });
+    }
+
+        return (
+        <div className="col-12 col-md-4 offset-md-4 border text-white">
+        <span className="h2 pt-4 m-2 text-white-50">{counterState.title} Counter </span>
+        <br />
+        <button className="btn btn-success m-1" onClick={incrementCounter}>+1</button>
+        <button className="btn btn-danger m-1" onClick={decrementCounter}>-1</button>
+        <br />
+        <span className="h4">
+        Counter: &nbsp;
+                    <span className="text-success">{counterState.counter }</span>
+        </span>
+        </div>
+            );
+    
+}
+
+export default Counter;
 
 
 
