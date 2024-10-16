@@ -531,6 +531,91 @@ const MovieList = (props) => {
 
 export default MovieList
 
+  Final codes 
+  ------------
+  import { useState } from "react";
+import AddMovie from "./AddMovie";
+import MovieList from "./MovieList";
+//movieList: ["Die Hard", "Harry Potter"]
+const MoviePage = () => {
+const [movieState, setMovieState] = useState(() => {
+return { movieList: ["Die Hard", "Harry Potter"] };
+});
+function handleAddMovie(newMovie) {
+setMovieState((prevState) => {
+return {
+... prevState,
+movieList: prevState.movieList.concat([newMovie]),
+};
+});
+}
+return (
+<div className="container col-12 col-md-6 my-3 border">
+<AddMovie handleAddMovie={handleAddMovie} />
+<MovieList movieList={movieState.movieList} />
+</div>
+);
+};
+export default MoviePage;
+
+  
+
+  ------------------------
+  import React from 'react'
+
+const MovieList = (props) => {
+  return (
+   
+      <div className='text-white'>
+          {props.movieList.map((movie, index) => {
+              
+              return <div key={index}> {movie }</div>
+
+          })}
+      </div>
+      
+      
+  )
+}
+
+export default MovieList
+
+
+  
+  ---------------------
+import { useState } from "react";
+const AddMovie = (props) => {
+const [name, setName] = useState("");
+function submitAddMovieForm(e, props) {
+e.preventDefault();
+props.handleAddMovie(name);
+setName("");
+}
+return (
+<form onSubmit={(e) => submitAddMovieForm(e, props)}>
+<div className="row text-white">
+<div className="col-12 text-center py-1 h4 text-success">Add
+Movie</div>
+<div className="col-8 offset-1">
+<input
+type="text"
+className="form-control"
+placeholder="Movie Name..."
+value={name}
+onChange={(e) => setName(e.target.value)}
+></input>
+</div>
+<div className="col-2">
+<button className="btn btn-success form-control">Add</button>
+</div>
+<hr className="mt-3" />
+</div>
+</form>
+);
+};
+export default AddMovie;
+
+
   
 
   
