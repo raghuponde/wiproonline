@@ -446,6 +446,41 @@ function AddMovie() {
 
 export default AddMovie
 
+  so call this in Movie page 
+
+  import React from 'react'
+import AddMovie from './AddMovie'
+function MoviePage() {
+  return (
+      <div className='container col-12 col-md-6 my-3 border'>
+          <AddMovie />
+      </div>
+  )
+}
+
+export default MoviePage
+
+  and in index.js 
+
+  -------------
+
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import Counter from "./Counter";
+import Header from "./Header";
+import MoviePage from "./MovieComponents/MoviePage";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+<React.StrictMode>
+<Header />
+<div className="p-2 m-2 row text-center">
+      <Counter />
+      <MoviePage />
+</div>
+</React.StrictMode>
+);
+
+
 
 
 
