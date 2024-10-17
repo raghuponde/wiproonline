@@ -238,7 +238,30 @@ return (
 }
 export default CycloPediaFuncPage;
 
+For providing focus when the website first time opens or for any logic i want to provide focus for that purpose also useref 
 
+const feedbackInputRef = useRef(null);
+
+down you have to apply to text area 
+
+ref={feedbackInputRef}
+
+means for this control u have to apply 
+<textarea
+value={inputFeedback}
+ref={feedbackInputRef} // 2nd change done
+onChange={(e) => {
+setInputFeedback(e.target.value);
+}}
+
+3rd change 
+ useEffect(() => {
+    feedbackInputRef.current.focus();  //here is the chnage 
+console.log("This will be called on Initial/first Render/Mount");
+return () => {
+console.log("This will be called on when component will be UNMOUNTED");
+};
+}, []);
 
 
 
