@@ -306,12 +306,69 @@ crossorigin="anonymous"></script>
 </html>
 
 go to each page and write the command rafce
+now go to getbootstrap.com and there take version v4.6 and search bar type nav/nav bar 
+
+      and take one nav bar from there which i have taken this below and paste that code in header return desing 
 
 
+Header.jsx 
+-------------
+      import React from 'react'
+
+const Header = () => {
+  return (
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+   
+  </div>
+</nav>
+  )
+}
+
+export default Header
+
+refer this Header in index.js file 
+      
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Header from './Header';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <div>
+    <Header />
+  </div>
+  
+);
 
 
-
-
+      
 
 
 
