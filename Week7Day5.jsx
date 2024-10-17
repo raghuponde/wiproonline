@@ -795,7 +795,11 @@ export default CryptoDetail;
 
 Header 
 -------
-            
+   same link modiefy 
+  <li className="nav-item">
+<Link className="nav-link" to="/cryptoDetail/BTC">
+Crypto Detail
+</Link>
 
 
 
