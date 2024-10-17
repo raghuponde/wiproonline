@@ -861,16 +861,91 @@ export default Product;
 
             
 
+using use state i can do th same so commented earleir code 
+-----------------------------------------------------------
+// import { useNavigate, Link } from "react-router-dom";
+// import React from "react";
+// function Product() {
+// const navigate = useNavigate();
+// return (
+// <div>
+// Product
+// <button
+// onClick={() => {
+// navigate("/product/create");
+// }}
+// >
+// Add Product{" "}
+// </button>
+// <Link to={`/product/details/5`}>
+// <button>Navigate to Product Detail - 5</button>
+// </Link>
+// </div>
+// );
+// }
+// export default Product;
+
+import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useState } from "react";
+import React from "react";
+
+function Product() {
+const navigate = useNavigate();
+const [goToProduct, setGoToProduct] = useState(() => {
+return false;
+});
+return (
+<div>
+Product
+<button
+onClick={() => {
+navigate("/product/create");
+}}
+>
+Add Product{" "}
+</button>
+<Link to={`/product/details/5`}>
+<button>Navigate to Product Detail - 5</button>
+</Link>
+{goToProduct && <Navigate to="/product/details/3" />}
+<button
+onClick={() => {
+setGoToProduct({ goToProduct: true });
+}}
+>
+Navigate to Product -3 (UseState)
+</button>
+</div>
+);
+}
+export default Product;
 
 
 
 
 
-
-
-
-
-
+Now in the create Product i will add one button which is go back
+so here -1 one step back -2 means two step back
+create product 
+--------------
+import React from "react";
+import { useNavigate } from "react-router-dom";
+function CreateProduct() {
+const navigate = useNavigate();
+return (
+<div>
+CreateProduct
+<button
+onClick={() => {
+navigate(-1);
+}}
+>
+Go back
+</button>
+</div>
+);
+}
+export default CreateProduct;
 
       
       
