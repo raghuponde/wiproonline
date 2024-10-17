@@ -766,10 +766,44 @@ Crypto Detail
 </Link>
 
 
+More than  one paramer passing 
+----------------
+
+
+add another routte 
+
+<Route
+path="/cryptodetail/:cryptoSymbol/:id"
+element={<CryptoDetail />}
+></Route>
+
+in crypto detail 
+---------------
+            import React from "react";
+import { useParams } from "react-router-dom";
+function CryptoDetail() {
+const { cryptoSymbol, id } = useParams();
+return (
+<div>
+<h4>CryptoDetail</h4>
+<p>Symbol : {cryptoSymbol}</p>
+<p>Id : {id}</p>
+</div>
+);
+}
+export default CryptoDetail;
+
+Header 
+-------
+            
 
 
 
 
+
+
+
+            
 
 
 
