@@ -572,8 +572,14 @@ About
 
 export default Header
 
+now now i will add pages folder in src and in that four pages i will created and rfce also will do it for
+that okay
+what are those four pages 
 
-      
+      CreateProduct.jsx 
+      Product.jsx 
+      ProductDetails.jsx 
+      ProductList.jsx 
 
       
 
