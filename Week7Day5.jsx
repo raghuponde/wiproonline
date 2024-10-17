@@ -1045,12 +1045,57 @@ root.render(
 );
 
 
+Now add Counter.jsx in compoenents folder and the code i s
 
+Counter.jsx 
+-------------
+Counter.jsx
+**************
+import React from "react";
+function Counter() {
+return <div>Counter</div>;
+}
+export default Counter;
 
+Inside redux folder create a new folder which is slice and in that create a file with the name
+counterSlice.js
+here i am slicing my redux store or you can say i am splitting so there will be different
+components in the project so for complete store i cannot maintain one store s we divide store in
+separate pieces which we call is as slice now here
 
+so i am creating slice for Counter now which i had mentioned
 
+counterSlice.js 
+***************
+import { createSlice } from "@reduxjs/toolkit";
+const initalState = { count: 0 };
+export const counterSlice = createSlice({
+name: "counter",
+initialState: initalState,
+reducers: {
+//here we will define all actions
+increment: (state) => {
+state.count += 1;
+},
+decrement: (state) => {
+state.count1 = 1;
+},
+},
+});
+export const { increment, decrement } = counterSlice.actions;
+export const counterReducer = counterSlice.reducer;
 
-
+store.js 
+-------------
+import { configureStore } from "@reduxjs/toolkit";
+import { counterReducer } from "./slice/counterSlice";
+export const store = configureStore({
+reducer: {
+counter: counterReducer,
+//we will fill this reducer in the upcoming videos
+},
+});
+console.log(store);
 
 
 
