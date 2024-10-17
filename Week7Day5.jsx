@@ -424,4 +424,13 @@ style={{ height: "35px", verticalAlign: "top" }}
 export default Header
 
 
+write this command in command prompt means in terminal
 
+npm i react-router-dom@6.4.3
+
+
+
+
+      
+
+      
