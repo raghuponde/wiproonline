@@ -1012,7 +1012,79 @@ root.render(
 
 
         
+npm install @reduxjs/toolkit react-redux
 
+Type above command in terminal and after that 
+
+I want to configure redux in my application for that 
+in src folder create new folder wit the name redux and in that add one file store.js only not jsx 
+
+store.js
+***********
+import { configureStore } from "@reduxjs/toolkit";
+export const store = configureStore({
+reducer: {
+//we will fill this reducer in the upcoming videos
+},
+});
+Index.js 
+------------
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./app/layout/Header";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+<React.StrictMode>
+<Provider store={store}>
+<Header />
+</Provider>
+</React.StrictMode>
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
         
       
 
