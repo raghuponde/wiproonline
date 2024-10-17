@@ -729,11 +729,41 @@ root.render(
 );
 
 
+Now I want to pass a paramter to the route and that parameter I want to dislay in the page aslso that paramter which u pased 
+
+      add this route in index.js before product 
+
+      <Route
+path="/cryptodetail/:cryptoSymbol"
+element={<CryptoDetail />}
+></Route>
+
+
+      go to Cryptodetails page 
+      ----------------------
+import React from "react";
+import { useParams } from "react-router-dom";
+function CryptoDetail() {
+const { cryptoSymbol} = useParams();
+return (
+<div>
+<h4>CryptoDetail</h4>
+<p>Symbol : {cryptoSymbol}</p>
+</div>
+);
+}
+export default CryptoDetail;
 
 
 
+header .jsx 
+---------------
+      above about you caan put this url 
 
-
+      <li className="nav-item">
+<Link className="nav-link" to="/cryptoDetail/BTC">
+Crypto Detail
+</Link>
 
 
 
