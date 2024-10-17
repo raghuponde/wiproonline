@@ -947,7 +947,73 @@ Go back
 }
 export default CreateProduct;
 
-      
+Now new project i am starting name is reduxdemo this redux is used for maintining state of the object 
+
+Firrt do initial set up and create  and here what u have to do is in src folder 
+
+create one folder with the name app and in that app folder two sub folders u create names are components and layout 
+and in layout Header.jsx file will come and as usual in images folder images u keep it and i am givng you the code after intial set up 
+
+index.html
+*************
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#000000" />
+<meta name="description" content="Web site created using create-react-app"
+/>
+<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+/>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min
+.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrapicons@
+1.10.2/font/bootstrap-icons.css" />
+<title>React App</title>
+</head>
+<body class="m-0" style="background-color: black">
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+</body>
+</html>
+
+Header.jsx
+************
+import React from "react";
+import logo from "../../images/react.png";
+function Header() {
+return (
+<div className="pt-3 pl-2">
+<img src={logo} alt="" style={{ height: "35px", verticalAlign: "top" }}
+/>{" "}
+<span className="h2 pt-4 text-white-50">React Course -
+ReduxOpedia</span>
+</div>
+);
+}
+export default Header;
+
+Index.js
+**********
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./app/layout/Header";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+<React.StrictMode>
+<Header />
+</React.StrictMode>
+);
+
+
+        
+
+        
       
 
       
