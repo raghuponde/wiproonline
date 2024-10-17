@@ -985,7 +985,7 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min
 Header.jsx
 ************
 import React from "react";
-import logo from "../../images/react.png";
+import logo from "../../images/logo512.png";
 function Header() {
 return (
 <div className="pt-3 pl-2">
