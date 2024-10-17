@@ -305,7 +305,7 @@ crossorigin="anonymous"></script>
 </body>
 </html>
 
-
+go to each page and write the command rafce
 
 
 
