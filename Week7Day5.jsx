@@ -1091,13 +1091,29 @@ import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer } from "./slice/counterSlice";
 export const store = configureStore({
 reducer: {
-counter: counterReducer,
+counterStore: counterReducer,
 //we will fill this reducer in the upcoming videos
 },
 });
 console.log(store);
 
+change the name of reducer to counterStore 
+type here console.log(store.getState())
 
+so in store.js
+   -------------
+import { configureStore } from "@reduxjs/toolkit";
+import { counterReducer } from "./slice/counterSlice";
+export const store = configureStore({
+reducer: {
+counterStore: counterReducer,
+//we will fill this reducer in the upcoming videos
+},
+});
+console.log(store.getState());
+store.dispatch({
+type: "counter/increment", });
+console.log(store.getState());
 
 
 
