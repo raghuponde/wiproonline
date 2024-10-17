@@ -1115,7 +1115,9 @@ store.dispatch({
 type: "counter/increment", });
 console.log(store.getState());
 
+what i am doing small storage i am creating and calling it in store here use state we have to orevsate like that so to avoid 
 
+      
 
 
 
