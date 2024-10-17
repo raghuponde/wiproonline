@@ -802,7 +802,36 @@ Crypto Detail
 </Link>
 
 
+Same kind of things i want to do for ProductDetails page 
 
+        so changes 
+index page nested route modify 
+----------------------------------
+<Route path="details/:productId" element={<ProductDetails />}>
+</Route>
+
+prodct Details page
+***********************
+import React from "react";
+import { useParams } from "react-router-dom";
+function ProductDetails() {
+const { productId } = useParams();
+return (
+<div>
+ProductDetails
+<p> ID: {productId}</p>
+</div>
+);
+}
+export default ProductDetails;
+//
+
+url in Header 
+-------------
+        Modiy in header 
+        <Link className="dropdown-item" to="/product/details/3">
+Product Details
+</Link>
 
 
 
