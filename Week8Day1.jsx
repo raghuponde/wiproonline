@@ -290,11 +290,105 @@ onClick={() => dispatch(decrementMultiplier(multiplier))}
     )
 }
 export default Counter;
+Now create new file destinationSlice.js in slice folder which is ther in redux means in redux--slice--destinationSclie.js 
 
+destinationSlice.js 
+---------------------
 
+import { createSlice } from "@reduxjs/toolkit";
+const initalState = () => {
+return {
+            destinations: [
+            {
+            name: "Hong Kong",
+            days: 7,
+            fact: "World's longest covered escalator",
+            },
+            {
+            name: "Japan",
+            days: 10,
+            fact: "Japan is mostly mountains",
+            },
+            {
+            name: "New Zealand",
+            days: 14,
+            fact: "Last country in the world to be inhabited by humans",
+            },
+            ],
+        };
+};
 
+export const destinationSlice = createSlice({
+name: "destination",
+initialState: initalState,
+reducers: {},
+});
+export const destinationReducer = destinationSlice.reducer;
 
+register in store.js
+-------------------
+  import { configureStore } from "@reduxjs/toolkit";
+import { counterReducer } from "./slice/counterSlice";
+import { destinationReducer } from "./slice/destinationSlice";
+export const store = configureStore({
+reducer: {
+counterStore: counterReducer,
+destinationStore: destinationReducer,
+//we will fill this reducer in the upcoming videos
+},
+});
+console.log(store.getState());
 
+create one destinationList.jsx in compoenents fodler 
+------------------------------------------------------
+
+import React from "react";
+import { useSelector } from "react-redux";
+function DestinationList() {
+const destinationList = useSelector(
+(state) => state.destinationStore.destinations
+);
+return destinationList.map((destination, index) => {
+return (
+<div
+className="text-center text-white row"
+style={{ borderBottom: "1px solid #333" }}
+key={index}
+>
+<div className="col-8 col-md-3 offset-md-3 pt-2">
+{destination.name}
+</div>
+<div className="col-4 col-md-2">
+<button className="btn btn-success form-control m-
+1">Details</button>
+</div>
+
+</div>
+);
+});
+}
+export default DestinationList;
+
+index.jsx 
+----------
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./app/layout/Header";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import Counter from "./app/components/Counter";
+import DestinationList from "./app/components/destinationList";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+<React.StrictMode>
+<Provider store={store}>
+            <Header />
+            <Counter />
+            <DestinationList />
+</Provider>
+</React.StrictMode>
+);
 
 
 
