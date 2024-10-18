@@ -390,13 +390,88 @@ root.render(
 </React.StrictMode>
 );
 
+Now on click of details button i want to retrieve the values
+so go to destinationSlice.js file and the updated code is
+Now code for destinationSlice.js 
+----------------------------------
+
+import { createSlice } from "@reduxjs/toolkit";
+const initalState = () => {
+return {
+destinations: [
+{
+name: "Hong Kong",
+days: 7,
+fact: "World's longest covered escalator",
+},
+{
+name: "Japan",
+days: 10,
+fact: "Japan is mostly mountains",
+},
+{
+name: "New Zealand",
+days: 14,
+fact: "Last country in the world to be inhabited by humans",
+},
+],
+
+destinationSelected: null,// change done
+};
+};
+//change done
+export const destinationSlice = createSlice({
+name: "destination",
+initialState: initalState,
+reducers: {
+destinationClicked: (state, action) => {
+state.destinationSelected = action.payload;
+console.log(action);
+},
+},
+});
+export const { destinationClicked } = destinationSlice.actions;//change done
+export const destinationReducer = destinationSlice.reducer;
 
 
+destionList.jsx 
+----------------
+  import React from "react";
+import { useSelector, useDispatch } from "react-redux"; // useDispatch added
+import { destinationClicked } from "../../redux/slice/destinationSlice";//
 
+function DestinationList() {
+const destinationList = useSelector(
+(state) => state.destinationStore.destinations
+);
+const dispatch = useDispatch();// change done
+return destinationList.map((destination, index) => {
+return (
+<div
+className="text-center text-white row"
+style={{ borderBottom: "1px solid #333" }}
+key={index}
+>
+<div className="col-8 col-md-3 offset-md-3 pt-2">
+{destination.name}
+</div>
+<div className="col-4 col-md-2">
+<button
+className="btn btn-success form-control m-1"
+onClick={() => dispatch(destinationClicked(destination))}// change
+done
+>
 
+Details
+</button>
+</div>
+</div>
+);
+});
+}
+export default DestinationList;
 
-
-
+then check once in log u can retrive that or nt 
 
 
 
