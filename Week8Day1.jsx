@@ -1,3 +1,6 @@
+Here create folder app in src and in app folder components and layout are sub folders and in componenets declare Counter.jsx and In layout Header.jsx 
+
+
 counterSlice.js 
 -------------------
   import { createSlice } from "@reduxjs/toolkit";
