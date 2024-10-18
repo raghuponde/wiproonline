@@ -472,6 +472,60 @@ Details
 export default DestinationList;
 
 then check once in log u can retrive that or nt 
+As I am able to get that object in console.log i want to disolay it aother compent DestinationFact.jsx 
+so create one file in cmponents folder which is DestinationFact.jsx 
+
+and code is below 
+
+import React from "react";
+import { useSelector } from "react-redux";
+function DestinationFact() {
+const selectedDestination = useSelector(
+(state) => state.destinationStore.destinationSelected
+);
+if (selectedDestination == undefined) {
+return (
+<div className="text-center pt-4 text-warning">Select a
+
+Destination</div>
+);
+} else {
+return (
+<div className="text-center border p-3 m-3">
+<h4 className="text-success">{selectedDestination.name}</h4>
+Days Recommened : {selectedDestination.days} <br />
+Fun Fact : {selectedDestination.fact}
+</div>
+);
+}
+}
+export default DestinationFact;
+
+
+index.js
+---------
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./app/layout/Header";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import Counter from "./app/components/Counter";
+import DestinationList from "./app/components/destinationList";
+import DestinationFact from "./app/components/DestinationFact";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+<React.StrictMode>
+<Provider store={store}>
+            <Header />
+            <Counter />
+            <DestinationList />
+            <DestinationFact />
+</Provider>
+</React.StrictMode>
+);
+
+
 
 
 
