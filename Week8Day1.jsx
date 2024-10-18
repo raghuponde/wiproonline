@@ -526,7 +526,140 @@ root.render(
 );
 
 
+Now i want to reset the app whole what i will do is that in each slice i will write  reset fucntin and on click of buuton in anothr compoenent 
+which is reset app i will do reset of applica
 
+counterSlice.js 
+-----------------
+import { createSlice } from "@reduxjs/toolkit";
+const initalState = { count: 10 };
+export const counterSlice = createSlice({
+name: "counter",
+initialState: initalState,
+reducers: {
+//here we will define all actions
+increment: (state) => {
+state.count += 1;
+},
+decrement: (state) => {
+state.count -= 1;
+},
+decrementMultiplier: (state, action) => {
+state.count -= action.payload;
+},
+incrementMultiplier: (state, action) => {
+state.count += Number(action.payload);
+},
+resetCounter: (state) => {
+state.count = 10;
+},
+},
+});
+export const {
+increment,
+decrement,
+incrementMultiplier,
+decrementMultiplier,
+resetCounter,
+} = counterSlice.actions;
+export const counterReducer = counterSlice.reducer;
+
+destionSlice 
+-----------
+  import { createSlice } from "@reduxjs/toolkit";
+
+const initalState = () => {
+return {
+destinations: [
+{
+name: "Hong Kong",
+days: 7,
+fact: "World's longest covered escalator",
+},
+{
+name: "Japan",
+days: 10,
+fact: "Japan is mostly mountains",
+},
+{
+name: "New Zealand",
+days: 14,
+fact: "Last country in the world to be inhabited by humans",
+},
+],
+destinationSelected: null,
+};
+};
+export const destinationSlice = createSlice({
+name: "destination",
+initialState: initalState,
+reducers: {
+destinationClicked: (state, action) => {
+state.destinationSelected = action.payload;
+console.log(action);
+},
+resetDestination: (state) => {
+state.destinationSelected = null;
+},
+},
+});
+export const { destinationClicked, resetDestination } =
+destinationSlice.actions;
+export const destinationReducer = destinationSlice.reducer;
+
+create in componenet folder ResetApp.jsx 
+--------------------------------
+  import React from "react";
+import { useDispatch } from "react-redux";
+import { resetCounter } from "../../redux/slice/counterSlice";
+
+import { resetDestination } from "../../redux/slice/destinationSlice";
+function ResetApp() {
+const dispatch = useDispatch();
+const resetCounterAndDestination = () => {
+dispatch(resetDestination());
+dispatch(resetCounter());
+};
+return (
+<div className="text-center">
+<button className="btn btn-warning" onClick=
+{resetCounterAndDestination}>
+Reset App
+</button>
+</div>
+);
+}
+export default ResetApp;
+
+Index.jsx 
+--------
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import Header from "./app/layout/Header";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import Counter from "./app/components/Counter";
+import DestinationList from "./app/components/destinationList";
+import DestinationFact from "./app/components/DestinationFact";
+import ResetApp from "./app/components/ResetApp";
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+<React.StrictMode>
+<Provider store={store}>
+            <Header />
+            <ResetApp />
+            <Counter />
+            <DestinationList />
+            <DestinationFact />
+</Provider>
+</React.StrictMode>
+);
+
+
+
+
+  
 
 
 
